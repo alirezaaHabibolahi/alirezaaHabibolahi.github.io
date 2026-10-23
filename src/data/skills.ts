@@ -1,150 +1,83 @@
 import type { Skill, SkillChain, SkillGroup } from '@/types/content'
 
+/** Skill domains and technologies transcribed from Alireza's latest resume. */
 export const skillGroups: SkillGroup[] = [
-  { id: 'core', label: 'Front-End', description: 'Languages, frameworks, UI, architecture and performance.' },
-  { id: 'backend', label: 'Back-End', description: 'Mid-level server development, APIs, databases and security.' },
-  { id: 'systems', label: 'Tools & Engineering', description: 'Data visualization, testing, build tools and engineering practices.' },
-  { id: 'exploring', label: 'Familiar With', description: 'Additional frameworks and technologies listed in my resumes.' },
+  { id: 'core', label: 'Front-End', description: 'Languages, frameworks, UI architecture and rendering.' },
+  { id: 'backend', label: 'Back-End', description: 'Server frameworks, databases and real-time services.' },
+  { id: 'systems', label: 'Tools & Engineering', description: 'State, forms, testing and build tools.' },
+  { id: 'exploring', label: 'Familiar With', description: 'Additional front-end frameworks listed in my resume.' },
 ]
 
 export const skills: Skill[] = [
-  // Front-end languages, frameworks, architecture and performance (both resumes)
+  // Front-end, architecture and rendering
   { id: 'javascript', label: 'JavaScript (ES6+)', group: 'core', level: 'strong', note: 'JavaScript ecosystem' },
   { id: 'typescript', label: 'TypeScript', group: 'core', level: 'strong', note: 'JavaScript ecosystem' },
   { id: 'react', label: 'React.js', group: 'core', level: 'strong', note: 'JavaScript ecosystem' },
-  { id: 'next', label: 'Next.js', group: 'core', level: 'strong', note: 'JavaScript ecosystem · SSR, SSG and ISR' },
-  { id: 'html', label: 'HTML', group: 'core', level: 'strong', note: 'Core technology' },
-  { id: 'css', label: 'CSS', group: 'core', level: 'strong', note: 'Core technology' },
-  { id: 'sass', label: 'Sass', group: 'core', level: 'strong', note: 'Core technology' },
-  { id: 'tailwind', label: 'Tailwind CSS', group: 'core', level: 'strong', note: 'Core technology' },
-  { id: 'mui', label: 'MUI', group: 'core', level: 'strong', note: 'UI tools' },
-  { id: 'ant', label: 'Ant Design', group: 'core', level: 'strong', note: 'UI tools' },
-  { id: 'headless', label: 'Headless UI', group: 'core', level: 'strong', note: 'UI tools' },
-  { id: 'shadcn', label: 'ShadCN UI', group: 'core', level: 'strong', note: 'UI tools' },
+  { id: 'next', label: 'Next.js', group: 'core', level: 'strong', note: 'React framework' },
   { id: 'component_arch', label: 'Component-Driven Architecture', group: 'core', level: 'strong', note: 'Front-end architecture' },
-  { id: 'enterprise', label: 'Enterprise Applications', group: 'core', level: 'strong', note: 'Front-end architecture' },
-  { id: 'erp', label: 'ERP Systems', group: 'core', level: 'strong', note: 'Front-end architecture' },
+  { id: 'design_systems', label: 'Design Systems', group: 'core', level: 'strong', note: 'Front-end architecture' },
   { id: 'ssr', label: 'SSR', group: 'core', level: 'strong', note: 'Rendering strategies' },
   { id: 'ssg', label: 'SSG', group: 'core', level: 'strong', note: 'Rendering strategies' },
   { id: 'isr', label: 'ISR', group: 'core', level: 'strong', note: 'Rendering strategies' },
-  { id: 'performance', label: 'Performance Optimization', group: 'core', level: 'strong', note: 'Web performance' },
-  { id: 'design_systems', label: 'Design Systems', group: 'core', level: 'strong', note: 'Reusable UI foundations' },
-  { id: 'frontend_architecture', label: 'Frontend Architecture', group: 'core', level: 'strong', note: 'Core competencies' },
-  { id: 'enterprise_erp', label: 'Enterprise ERP Development', group: 'core', level: 'strong', note: 'Core competencies' },
-  { id: 'lighthouse', label: 'Lighthouse', group: 'core', level: 'strong', note: 'Web performance' },
-  { id: 'code_splitting', label: 'Code Splitting', group: 'core', level: 'strong', note: 'Web performance' },
-  { id: 'lazy_loading', label: 'Lazy Loading', group: 'core', level: 'strong', note: 'Web performance' },
-  { id: 'bundle', label: 'Bundle Optimization', group: 'core', level: 'strong', note: 'Web performance' },
-  { id: 'motion', label: 'Framer Motion', group: 'core', level: 'strong', note: 'UI enhancements' },
-  { id: 'i18next', label: 'i18next', group: 'core', level: 'strong', note: 'UI enhancements' },
-  { id: 'pwa', label: 'PWA', group: 'core', level: 'strong', note: 'Mobile and web applications' },
-  { id: 'capacitor', label: 'Capacitor.js', group: 'core', level: 'strong', note: 'Mobile and web applications' },
 
-  // State, forms, API integration, visualization and mapping
-  { id: 'redux', label: 'Redux', group: 'systems', level: 'strong', note: 'State management' },
-  { id: 'redux_toolkit', label: 'Redux Toolkit', group: 'systems', level: 'strong', note: 'State management' },
-  { id: 'zustand', label: 'Zustand', group: 'systems', level: 'strong', note: 'State management' },
-  { id: 'context', label: 'Context API', group: 'systems', level: 'strong', note: 'State management' },
-  { id: 'rhf', label: 'React Hook Form', group: 'systems', level: 'strong', note: 'Forms and validation' },
-  { id: 'formik', label: 'Formik', group: 'systems', level: 'strong', note: 'Forms and validation' },
-  { id: 'yup', label: 'Yup', group: 'systems', level: 'strong', note: 'Forms and validation' },
-  { id: 'zod', label: 'Zod', group: 'systems', level: 'strong', note: 'Forms and validation' },
-  { id: 'axios', label: 'Axios', group: 'systems', level: 'strong', note: 'Data fetching and API integration' },
-  { id: 'query', label: 'React Query (TanStack Query)', group: 'systems', level: 'strong', note: 'Data fetching and API integration' },
-  { id: 'swr', label: 'SWR', group: 'systems', level: 'strong', note: 'Data fetching and API integration' },
-  { id: 'orval', label: 'Orval', group: 'systems', level: 'strong', note: 'API client generation' },
-  { id: 'apexcharts', label: 'ApexCharts', group: 'systems', level: 'strong', note: 'Data visualization' },
-  { id: 'recharts', label: 'Recharts', group: 'systems', level: 'strong', note: 'Data visualization' },
-  { id: 'reactflow', label: 'React Flow', group: 'systems', level: 'strong', note: 'Flow and diagrams' },
-  { id: 'gojs', label: 'GoJS', group: 'systems', level: 'strong', note: 'Flow and diagrams' },
-  { id: 'mapbox', label: 'Mapbox', group: 'systems', level: 'strong', note: 'Maps and location' },
-  { id: 'reactleaflet', label: 'React Leaflet', group: 'systems', level: 'strong', note: 'Maps and location' },
-  { id: 'neshan', label: 'Neshan', group: 'systems', level: 'strong', note: 'Maps and location' },
-
-  // Mid-level back-end skills explicitly listed across the resumes
+  // Back-end frameworks, databases and real-time technologies
   { id: 'node', label: 'Node.js', group: 'backend', level: 'mid', note: 'Backend & databases' },
   { id: 'nest', label: 'NestJS', group: 'backend', level: 'mid', note: 'Core backend' },
   { id: 'express', label: 'Express.js', group: 'backend', level: 'mid', note: 'Core backend' },
-  { id: 'rest', label: 'REST API', group: 'backend', level: 'mid', note: 'Core backend' },
-  { id: 'websocket', label: 'WebSockets', group: 'backend', level: 'mid', note: 'Core backend' },
   { id: 'sql', label: 'SQL', group: 'backend', level: 'mid', note: 'Core backend databases' },
   { id: 'mongo', label: 'MongoDB', group: 'backend', level: 'mid', note: 'Core backend databases' },
-  { id: 'prisma', label: 'Prisma', group: 'backend', level: 'mid', note: 'Database toolkit / ORM' },
-  { id: 'typeorm', label: 'TypeORM', group: 'backend', level: 'mid', note: 'Database toolkit / ORM' },
-  { id: 'socketio', label: 'Socket.io', group: 'backend', level: 'mid', note: 'Real-time communication' },
   { id: 'signalr', label: 'SignalR', group: 'backend', level: 'mid', note: 'Real-time features' },
-  { id: 'postman', label: 'Postman', group: 'backend', level: 'mid', note: 'API tooling' },
-  { id: 'swagger', label: 'Swagger', group: 'backend', level: 'mid', note: 'API documentation' },
-  { id: 'jwt', label: 'JWT', group: 'backend', level: 'mid', note: 'Security and authentication' },
-  { id: 'oauth2', label: 'OAuth2', group: 'backend', level: 'mid', note: 'Security and authentication' },
+  { id: 'websocket', label: 'WebSockets', group: 'backend', level: 'mid', note: 'Real-time communication' },
 
-  // Testing, tooling and professional competencies from the resumes
+  // State, forms, testing and build tools
+  { id: 'redux_toolkit', label: 'Redux Toolkit', group: 'systems', level: 'strong', note: 'Client-side state management' },
+  { id: 'zustand', label: 'Zustand', group: 'systems', level: 'strong', note: 'Client-side state management' },
+  { id: 'query', label: 'TanStack Query', group: 'systems', level: 'strong', note: 'Data fetching and API integration' },
+  { id: 'rhf', label: 'React Hook Form', group: 'systems', level: 'strong', note: 'Forms and validation' },
+  { id: 'zod', label: 'Zod', group: 'systems', level: 'strong', note: 'Forms and validation' },
   { id: 'jest', label: 'Jest', group: 'systems', level: 'strong', note: 'Testing and code quality' },
-  { id: 'unit_testing', label: 'Unit Testing', group: 'systems', level: 'strong', note: 'Testing and code quality' },
-  { id: 'component_testing', label: 'Component Testing', group: 'systems', level: 'strong', note: 'Testing and code quality' },
-  { id: 'testable_code', label: 'Testable Code', group: 'systems', level: 'strong', note: 'Testing and code quality' },
   { id: 'rtl', label: 'React Testing Library', group: 'systems', level: 'strong', note: 'Testing and code quality' },
-  { id: 'testing_quality', label: 'Testing & Code Quality', group: 'systems', level: 'strong', note: 'Core competencies' },
+  { id: 'git', label: 'Git', group: 'systems', level: 'strong', note: 'Version control' },
   { id: 'vite', label: 'Vite', group: 'systems', level: 'strong', note: 'Build and code quality' },
   { id: 'webpack', label: 'Webpack', group: 'systems', level: 'strong', note: 'Build and code quality' },
-  { id: 'eslint', label: 'ESLint', group: 'systems', level: 'strong', note: 'Build and code quality' },
-  { id: 'prettier', label: 'Prettier', group: 'systems', level: 'strong', note: 'Build and code quality' },
-  { id: 'git', label: 'Git', group: 'systems', level: 'strong', note: 'Version control' },
-  { id: 'gitlab', label: 'GitLab', group: 'systems', level: 'strong', note: 'Version control' },
-  { id: 'storybook', label: 'Storybook', group: 'systems', level: 'strong', note: 'UI component development' },
-  { id: 'technical_decisions', label: 'Technical Decision-Making', group: 'systems', level: 'strong', note: 'Core competencies' },
-  { id: 'product_development', label: 'Product-Oriented Development', group: 'systems', level: 'strong', note: 'Core competencies' },
-  { id: 'technical_planning', label: 'Technical Planning', group: 'systems', level: 'strong', note: 'Core competencies' },
-  { id: 'business_workflows', label: 'Complex Business Workflows', group: 'systems', level: 'strong', note: 'Core competencies' },
-  { id: 'realtime_apps', label: 'Real-Time Applications', group: 'systems', level: 'strong', note: 'Core competencies' },
-  { id: 'rest_integration', label: 'REST API Integration', group: 'systems', level: 'strong', note: 'Core competencies' },
-  { id: 'code_review', label: 'Code Review & Mentoring', group: 'systems', level: 'strong', note: 'Core competencies' },
 
-  // Resume-listed familiarity
+  // Other front-end frameworks listed on the resume
   { id: 'reactnative', label: 'React Native', group: 'exploring', level: 'exploring', note: 'JavaScript ecosystem' },
-  { id: 'vue', label: 'Vue.js', group: 'exploring', level: 'exploring', note: 'JavaScript ecosystem' },
-  { id: 'python', label: 'Python', group: 'exploring', level: 'exploring', note: 'Programming' },
+  { id: 'vue', label: 'Vue.Js', group: 'exploring', level: 'exploring', note: 'JavaScript ecosystem' },
 ]
 
+/** Relationship paths only connect technologies listed in the latest resume. */
 export const skillChains: SkillChain[] = [
   {
-    id: 'frontend', label: 'Front-End', description: 'Frameworks, UI systems, application architecture and performance.',
+    id: 'frontend', label: 'Front-End', description: 'Front-end frameworks, component architecture, design systems and rendering.',
     edges: [
       ['javascript', 'typescript'], ['typescript', 'react'], ['react', 'next'], ['react', 'reactnative'], ['react', 'vue'],
-      ['html', 'css'], ['css', 'sass'], ['css', 'tailwind'], ['tailwind', 'mui'], ['mui', 'ant'], ['ant', 'headless'], ['headless', 'shadcn'],
-      ['react', 'component_arch'], ['component_arch', 'enterprise'], ['enterprise', 'erp'], ['next', 'ssr'], ['next', 'ssg'], ['next', 'isr'],
-      ['react', 'performance'], ['performance', 'lighthouse'], ['performance', 'code_splitting'], ['code_splitting', 'lazy_loading'], ['lazy_loading', 'bundle'],
-      ['component_arch', 'design_systems'], ['component_arch', 'frontend_architecture'], ['erp', 'enterprise_erp'], ['react', 'motion'], ['react', 'i18next'], ['react', 'pwa'], ['pwa', 'capacitor'],
+      ['react', 'component_arch'], ['component_arch', 'design_systems'], ['next', 'ssr'], ['next', 'ssg'], ['next', 'isr'],
     ],
   },
   {
-    id: 'backend', label: 'Back-End', description: 'Node.js services, APIs, data and authentication.',
+    id: 'backend', label: 'Back-End', description: 'Node.js frameworks, databases and real-time technologies.',
     edges: [
-      ['typescript', 'node'], ['node', 'nest'], ['node', 'express'], ['nest', 'rest'], ['express', 'rest'], ['rest', 'postman'], ['rest', 'swagger'],
-      ['rest', 'jwt'], ['jwt', 'oauth2'], ['nest', 'prisma'], ['nest', 'typeorm'], ['prisma', 'sql'], ['typeorm', 'mongo'], ['node', 'websocket'], ['node', 'python'],
-      ['websocket', 'socketio'], ['node', 'signalr'], ['sql', 'mongo'],
+      ['typescript', 'node'], ['node', 'nest'], ['node', 'express'], ['nest', 'sql'], ['nest', 'mongo'],
+      ['node', 'websocket'], ['node', 'signalr'],
     ],
   },
   {
-    id: 'data', label: 'Data & Real-Time', description: 'Data fetching, live features, diagrams, maps and visualization.',
+    id: 'data', label: 'State & Data', description: 'Application state and server data in React applications.',
     edges: [
-      ['react', 'axios'], ['axios', 'query'], ['query', 'swr'], ['axios', 'orval'], ['node', 'websocket'], ['websocket', 'react'], ['react', 'signalr'],
-      ['react', 'apexcharts'], ['apexcharts', 'recharts'], ['react', 'reactflow'], ['reactflow', 'gojs'], ['react', 'mapbox'], ['mapbox', 'reactleaflet'], ['reactleaflet', 'neshan'],
+      ['react', 'redux_toolkit'], ['react', 'zustand'], ['react', 'query'],
     ],
   },
   {
-    id: 'engineering', label: 'Testing & Tooling', description: 'Quality, build systems, collaboration and engineering practice.',
+    id: 'engineering', label: 'Testing & Tooling', description: 'Testing, source control and build tools.',
     edges: [
-      ['react', 'jest'], ['jest', 'unit_testing'], ['jest', 'component_testing'], ['component_testing', 'testable_code'], ['component_testing', 'rtl'], ['jest', 'testing_quality'],
-      ['react', 'vite'], ['vite', 'webpack'], ['vite', 'eslint'], ['eslint', 'prettier'], ['git', 'gitlab'], ['git', 'storybook'], ['storybook', 'design_systems'],
-      ['react', 'technical_decisions'], ['technical_decisions', 'technical_planning'], ['technical_planning', 'product_development'],
-      ['product_development', 'business_workflows'], ['business_workflows', 'realtime_apps'], ['technical_decisions', 'rest_integration'], ['technical_planning', 'code_review'],
+      ['react', 'jest'], ['jest', 'rtl'], ['git', 'vite'], ['vite', 'webpack'],
     ],
   },
   {
-    id: 'state_forms', label: 'State & Forms', description: 'Client-side state, forms and validation libraries.',
+    id: 'state_forms', label: 'Forms & Validation', description: 'React form handling and schema validation.',
     edges: [
-      ['react', 'redux'], ['redux', 'redux_toolkit'], ['redux', 'zustand'], ['zustand', 'context'], ['react', 'rhf'], ['rhf', 'formik'], ['rhf', 'yup'], ['rhf', 'zod'],
+      ['react', 'rhf'], ['rhf', 'zod'],
     ],
   },
 ]

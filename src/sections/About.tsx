@@ -112,8 +112,8 @@ export function About() {
             <div className="mt-12 border-t border-line pt-6">
               <h3 className="label-mono mb-5">{t('Education')}</h3>
               <div className="space-y-5 text-sm text-fg-muted">
-                <p><strong className="block text-fg">{t('MSc, Artificial Intelligence')}</strong> {t('Islamic Azad University, South Tehran')} · {language === 'fa' ? '۲۰۲۴–اکنون' : '2024–Present'}</p>
-                <p><strong className="block text-fg">{t('BSc, Electrical Engineering')}</strong> {t('Islamic Azad University, Science and Research')} · {language === 'fa' ? '۲۰۱۹–۲۰۲۳' : '2019–2023'}</p>
+                <p><span>{language === 'fa' ? '۲۰۲۴ - اکنون' : '2024 - Present'} {t('Iran, Tehran')}</span><strong className="mt-1 block text-fg">{t('M.Sc. in Artificial Intelligence')}</strong><span className="block">{t('Islamic Azad University, South Tehran Branch · Tehran, Iran')}</span></p>
+                <p><span>{language === 'fa' ? '۲۰۱۹ - ۲۰۲۳' : '2019 - 2023'} {t('Iran, Tehran')}</span><strong className="mt-1 block text-fg">{t('B.Sc. in Electrical Engineering')}</strong><span className="block">{t('Islamic Azad University, Science and Research Branch · Tehran, Iran')}</span></p>
               </div>
             </div>
           </Reveal>

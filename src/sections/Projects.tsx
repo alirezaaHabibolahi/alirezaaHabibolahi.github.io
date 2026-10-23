@@ -133,6 +133,7 @@ export function Projects() {
                   )}
                 </div>
                 <h3 className="mt-4 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">{t(project.name)}</h3>
+                <p className="mt-2 font-mono text-[12px] text-fg-dim">{t(project.summary)}</p>
                 <p className="mt-4 max-w-2xl text-base leading-relaxed text-fg-muted sm:text-[17px]">{t(project.description)}</p>
 
                 <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-12 xl:grid-cols-[minmax(0,1fr)_17rem]">

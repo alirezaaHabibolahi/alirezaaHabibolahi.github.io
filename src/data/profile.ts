@@ -14,9 +14,7 @@ export const profile: Profile = {
   interests: ['Front-end engineering', 'API development', 'User experience'],
   location: { country: 'Tehran, Iran', timeZone: 'Asia/Tehran', utcOffset: 'UTC+03:30' },
   bio: [
-    'Frontend Engineer with 5+ years of experience developing scalable, high-performance web applications and enterprise software using React, Next.js, TypeScript, and modern frontend technologies. Experienced in building ERP systems, admin dashboards, customer-facing applications, and reusable design systems with a strong focus on performance, accessibility, maintainability, and user experience.',
-    'Skilled in designing component-driven architectures, developing complex business modules including Financial Accounting, Office Automation, Inventory Management, Treasury, Receivables, and Enterprise Workflows, while implementing real-time features using SignalR.',
-    'Strong experience collaborating with cross-functional teams, leading code reviews, mentoring developers, and delivering production-ready solutions for enterprise platforms. Passionate about building clean, scalable, and maintainable frontend architectures while continuously improving developer experience and product quality.',
+    'Senior Frontend Engineer with 6+ years of experience building scalable enterprise applications with React, Next.js, and TypeScript. Experienced in frontend architecture, design systems, performance optimization, and complex business applications. Strong background in technical decision-making, code reviews, mentoring, and cross-functional product development.',
   ],
   email: 'alirezaahabibolahi@gmail.com',
   availability: null,

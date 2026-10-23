@@ -39,7 +39,7 @@ function boxWithin(el: HTMLElement, root: HTMLElement): Box | null {
  * Measures registered DOM anchors inside `container` and returns SVG paths
  * connecting them — so diagram lines follow the real layout at every breakpoint.
  */
-export function useConnectorPaths(container: RefObject<HTMLElement | null>, edges: ReadonlyArray<readonly [string, string]>) {
+export function useConnectorPaths(container: RefObject<HTMLElement | null>, edges: ReadonlyArray<readonly [string, string]>, layoutDirection: string) {
   const anchors = useRef(new Map<string, HTMLElement>())
   const [paths, setPaths] = useState<ConnectorPath[]>([])
 
@@ -57,6 +57,7 @@ export function useConnectorPaths(container: RefObject<HTMLElement | null>, edge
 
     const measure = () => {
       const next: ConnectorPath[] = []
+      const rtl = getComputedStyle(root).direction === 'rtl'
       const box = (id: string) => {
         const el = anchors.current.get(id)
         return el ? boxWithin(el, root) : null
@@ -67,14 +68,18 @@ export function useConnectorPaths(container: RefObject<HTMLElement | null>, edge
         if (!a || !b) continue
         const ay = a.top + a.height / 2
         const by = b.top + b.height / 2
-        const sameColumn = Math.abs(a.left - b.left) < 40
+        // In RTL, text-start buttons share their right edge instead of their left.
+        const aStart = rtl ? a.right : a.left
+        const bStart = rtl ? b.right : b.left
+        const sameColumn = Math.abs(aStart - bStart) < 40
         let d: string
         if (sameColumn) {
-          // Loop out to the left of the column.
-          const x1 = a.left - GAP
-          const x2 = b.left - GAP
+          // Route from the logical start edge of the column.
+          const x1 = rtl ? a.right + GAP : a.left - GAP
+          const x2 = rtl ? b.right + GAP : b.left - GAP
           const bulge = Math.min(64, 18 + Math.abs(by - ay) * 0.12)
-          d = `M${x1},${ay} C${x1 - bulge},${ay} ${x2 - bulge},${by} ${x2},${by}`
+          const bend = rtl ? bulge : -bulge
+          d = `M${x1},${ay} C${x1 + bend},${ay} ${x2 + bend},${by} ${x2},${by}`
         } else {
           const rightward = b.left > a.left
           const x1 = (rightward ? a.right : a.left) + (rightward ? GAP : -GAP)
@@ -92,7 +97,7 @@ export function useConnectorPaths(container: RefObject<HTMLElement | null>, edge
     observer.observe(root)
     document.fonts?.ready.then(measure)
     return () => observer.disconnect()
-  }, [container, edges])
+  }, [container, edges, layoutDirection])
 
   return { paths, register }
 }
