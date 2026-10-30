@@ -166,25 +166,29 @@ export function Experience() {
                         aria-expanded={openExperience === item.id}
                         aria-controls={panelId}
                         onClick={() => toggleExperience(item.id)}
-                        className="group w-full text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-ink-950"
+                        className="group flex w-full items-center gap-6 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-ink-950 sm:gap-10"
                       >
-                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[11.5px]">
-                          <span className="flex items-center gap-2 uppercase tracking-[0.14em] text-fg-muted">
-                            <StatusDot tone={item.status === 'running' ? 'ok' : 'idle'} pulse={item.status === 'running'} />
-                            {t(item.status)}
-                          </span>
-                          <span className="text-fg-dim">{formatPeriod(item.period)}</span>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[11.5px]">
+                            <span className="flex items-center gap-2 uppercase tracking-[0.14em] text-fg-muted">
+                              <StatusDot tone={item.status === 'running' ? 'ok' : 'idle'} pulse={item.status === 'running'} />
+                              {t(item.status)}
+                            </span>
+                            <span className="text-fg-dim">{formatPeriod(item.period)}</span>
+                          </div>
+                          <h3 id={`${panelId}-title`} className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.025em] text-fg sm:text-[2rem]">
+                            {t(item.organization ?? item.title)}
+                          </h3>
+                          <p className="mt-1.5 text-sm font-medium text-fg-muted sm:text-base">
+                            {t(item.title)} <span className="text-fg-dim">· {t(item.domain)}</span>
+                          </p>
                         </div>
-                        <h3 id={`${panelId}-title`} className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.025em] text-fg sm:text-[2rem]">
-                          {t(item.organization ?? item.title)}
-                        </h3>
-                        <p className="mt-1.5 text-sm font-medium text-fg-muted sm:text-base">
-                          {t(item.title)} <span className="text-fg-dim">· {t(item.domain)}</span>
-                        </p>
-                        <ChevronDown
-                          aria-hidden="true"
-                          className={`mt-4 size-4 text-fg-dim transition-transform duration-200 group-hover:text-fg ${openExperience === item.id ? 'rotate-180' : ''}`}
-                        />
+                        <span className="ms-auto grid size-14 shrink-0 place-items-center border border-line-strong text-fg-dim transition-colors duration-200 group-hover:border-accent group-hover:text-fg sm:size-16">
+                          <ChevronDown
+                            aria-hidden="true"
+                            className={`size-6 transition-transform duration-200 sm:size-7 ${openExperience === item.id ? 'rotate-180' : ''}`}
+                          />
+                        </span>
                       </button>
                     </header>
                     <AnimatePresence initial={false}>
