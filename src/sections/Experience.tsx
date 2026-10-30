@@ -1,4 +1,6 @@
-import { motion } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
 import type { Experience as ExperienceItem } from '@/types/content'
 import { experience } from '@/data/experience'
 import { Section } from '@/components/Section'
@@ -108,6 +110,23 @@ function Manifest({ item }: { item: ExperienceItem }) {
 
 export function Experience() {
   const { t } = useI18n()
+  const { reducedMotion } = usePreferences()
+  const [openExperience, setOpenExperience] = useState<string | null>(null)
+  const experienceRefs = useRef(new Map<string, HTMLElement>())
+
+  function toggleExperience(id: string) {
+    const isOpen = openExperience === id
+    setOpenExperience(isOpen ? null : id)
+
+    if (!isOpen) {
+      requestAnimationFrame(() => {
+        experienceRefs.current.get(id)?.scrollIntoView({
+          behavior: reducedMotion ? 'auto' : 'smooth',
+          block: 'start',
+        })
+      })
+    }
+  }
 
   return (
     <Section id="experience" component="Experience" labelledBy="experience-title">
@@ -133,36 +152,70 @@ export function Experience() {
             return (
               <li key={item.id} className="relative border-t border-line">
                 <Reveal delay={i * 0.06}>
-                  <article aria-labelledby={`${panelId}-title`} className="py-8 sm:py-10">
+                  <article
+                    ref={(node) => {
+                      if (node) experienceRefs.current.set(item.id, node)
+                      else experienceRefs.current.delete(item.id)
+                    }}
+                    aria-labelledby={`${panelId}-title`}
+                    className="scroll-mt-24 py-8 sm:py-10"
+                  >
                     <header className="min-w-0">
-                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[11.5px]">
-                        <span className="flex items-center gap-2 uppercase tracking-[0.14em] text-fg-muted">
-                          <StatusDot tone={item.status === 'running' ? 'ok' : 'idle'} pulse={item.status === 'running'} />
-                          {t(item.status)}
-                        </span>
-                        <span className="text-fg-dim">{formatPeriod(item.period)}</span>
-                      </div>
-                      <h3 id={`${panelId}-title`} className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.025em] text-fg sm:text-[2rem]">
-                        {t(item.organization ?? item.title)}
-                      </h3>
-                      <p className="mt-1.5 text-sm font-medium text-fg-muted sm:text-base">
-                        {t(item.title)} <span className="text-fg-dim">· {t(item.domain)}</span>
-                      </p>
+                      <button
+                        type="button"
+                        aria-expanded={openExperience === item.id}
+                        aria-controls={panelId}
+                        onClick={() => toggleExperience(item.id)}
+                        className="group w-full text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-ink-950"
+                      >
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[11.5px]">
+                          <span className="flex items-center gap-2 uppercase tracking-[0.14em] text-fg-muted">
+                            <StatusDot tone={item.status === 'running' ? 'ok' : 'idle'} pulse={item.status === 'running'} />
+                            {t(item.status)}
+                          </span>
+                          <span className="text-fg-dim">{formatPeriod(item.period)}</span>
+                        </div>
+                        <h3 id={`${panelId}-title`} className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.025em] text-fg sm:text-[2rem]">
+                          {t(item.organization ?? item.title)}
+                        </h3>
+                        <p className="mt-1.5 text-sm font-medium text-fg-muted sm:text-base">
+                          {t(item.title)} <span className="text-fg-dim">· {t(item.domain)}</span>
+                        </p>
+                        <ChevronDown
+                          aria-hidden="true"
+                          className={`mt-4 size-4 text-fg-dim transition-transform duration-200 group-hover:text-fg ${openExperience === item.id ? 'rotate-180' : ''}`}
+                        />
+                      </button>
                     </header>
-                    <div className="mt-6">
-                      <h4 className="label-mono">{t('Responsibilities')}</h4>
-                      <ul className="mt-4 space-y-3">
-                        {item.responsibilities.map((responsibility) => (
-                          <li key={responsibility} className="flex gap-3 text-[15px] leading-relaxed text-fg-muted sm:text-base">
-                            <span className="mt-[0.15em] font-mono text-xs text-accent" aria-hidden="true">→</span>
-                            <span>{t(responsibility)}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div id={panelId} role="region" aria-labelledby={`${panelId}-title`} className="mt-7">
-                      <Manifest item={item} />
-                    </div>
+                    <AnimatePresence initial={false}>
+                      {openExperience === item.id && (
+                        <motion.div
+                          id={panelId}
+                          role="region"
+                          aria-labelledby={`${panelId}-title`}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: reducedMotion ? 0 : 0.28, ease: 'easeInOut' }}
+                          className="overflow-hidden"
+                        >
+                          <div className="mt-6">
+                            <h4 className="label-mono">{t('Responsibilities')}</h4>
+                            <ul className="mt-4 space-y-3">
+                              {item.responsibilities.map((responsibility) => (
+                                <li key={responsibility} className="flex gap-3 text-[15px] leading-relaxed text-fg-muted sm:text-base">
+                                  <span className="mt-[0.15em] font-mono text-xs text-accent" aria-hidden="true">→</span>
+                                  <span>{t(responsibility)}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="mt-7">
+                            <Manifest item={item} />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </article>
                 </Reveal>
               </li>
